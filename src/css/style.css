@@ -1,0 +1,16 @@
+body {
+  color: #999;
+}
+
+.cell {
+  width: 120px;
+  height: 120px;
+  border: 2px solid black;
+  margin: 5px;
+}
+
+.game-field {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
