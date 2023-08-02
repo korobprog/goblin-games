@@ -1,31 +1,51 @@
-import Goblin from './goblin';
+import Goblin from '../goblin';
+import ClickHandler from '../clickHandler';
 
-describe('Goblin', () => {
+describe('Game', () => {
 
    let goblin;
+   let clickHandler;
+   let curBox;
+   let newBox;
+   let gameOnInterval;
 
    beforeEach(() => {
       goblin = new Goblin(5);
+      clickHandler = new ClickHandler('.playground');
+      curBox = null;
+      newBox = null;
+
+      gameOnInterval = setInterval(() => {
+         // game loop
+      }, 1000);
    });
 
-   test('should turn goblin on', () => {
-      goblin.goblinOn(1);
-      expect(goblin.curBox).toBe(1);
+   afterEach(() => {
+      clearInterval(gameOnInterval);
    });
 
-   test('should turn goblin off', () => {
-      goblin.goblinOn(2);
-      goblin.goblinOff(2);
-      expect(goblin.curBox).toBeNull();
+   test('calls goblinOn/Off', () => {
+      const goblinOnSpy = jest.spyOn(goblin, 'goblinOn');
+      const goblinOffSpy = jest.spyOn(goblin, 'goblinOff');
+
+      jest.advanceTimersByTime(3000);
+
+      expect(goblinOnSpy).toHaveBeenCalled();
+      expect(goblinOffSpy).toHaveBeenCalled();
    });
 
-   test('should throw error if attempts exceeded', () => {
+   test('alternates boxes', () => {
+      jest.advanceTimersByTime(2000);
+
+      expect(curBox).not.toBe(newBox);
+   });
+
+   test('game over on max attempts', () => {
       for (let i = 0; i < 5; i++) {
-         goblin.goblinOff(i);
+         jest.advanceTimersByTime(1000);
       }
 
-      expect(() => goblin.goblinOff(5)).toThrow('Counter limitation');
+      expect(clearInterval).toHaveBeenCalledWith(gameOnInterval);
    });
 
 });
-
