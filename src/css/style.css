@@ -1,16 +1,29 @@
-body {
-  color: #999;
+.playground {
+  width: 520px;
+  height: 520px;
+  border: 1px solid green;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.cell {
+.box {
   width: 120px;
   height: 120px;
-  border: 2px solid black;
-  margin: 5px;
+  border: 1px solid gray;
 }
 
-.game-field {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
+.goblin {
+  background-image: url('../img/goblin.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: url('../img/hammer.png'), pointer;
+}
+
+#goblinsKills {
+  text-align: center;
+  font-size: 2em;
 }

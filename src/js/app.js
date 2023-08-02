@@ -1,12 +1,30 @@
-// TODO: write code here
+import Goblin from './goblin';
+import ClickHandler from './clickHandler';
 
-// comment this to pass build
-const unusedVariable = 'variable';
-console.log(unusedVariable);
+let curBox;
+let newBox;
+const attemptsLimit = 5;
+const goblin = new Goblin(attemptsLimit);
+const click = new ClickHandler('.playground');
+console.log(click);
+const gameOn = setInterval(() => {
+   do {
+      newBox = Math.floor(Math.random() * 16) + 1;
+   } while (curBox === newBox);
 
-// for demonstration purpose only
-export default function demo(value) {
-  return `Demo: ${value}`;
-}
+   try {
+      goblin.goblinOff(curBox);
+   } catch (err) {
+      if (err.message === 'Counter limitation') {
+         alert('GAME OVER!');
+         clearInterval(gameOn);
+         // удаление значения переменной для прекращения
+         // отображения Гоблина после сообщения "GAME OVER!"
+         newBox = undefined;
+      }
+   }
+   goblin.goblinOn(newBox);
+   curBox = newBox;
+}, 1000);
 
-console.log('app.js included');
+gameOn();

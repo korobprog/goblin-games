@@ -1,4 +1,3 @@
-import Game from './logic/Game/Game';
+import './css/style.css';
 
-const game = new Game();
-game.start();
+import './js/app';
