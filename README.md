@@ -1,3 +1,3 @@
 # Goblin-Games
 
-![CI](https://github.com/korobprog/goblin-games/actions/workflows/web.yml/badge.svg)
+[![Build status](https://ci.appveyor.com/api/projects/status/6vfq8x9wmagvvmbl?svg=true)](https://ci.appveyor.com/project/korobprog/goblin-games)
